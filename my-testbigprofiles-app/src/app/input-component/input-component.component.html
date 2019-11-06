@@ -1,1 +1,9 @@
-<p>input-component works!</p>
+<div class="container border border-dark rounded-lg">
+        <h3>Scegli File</h3> 
+        <div class="file-upload">
+            <input type="file" name="file" ng2FileSelect [uploader]="uploader" accept=".txt,.pdf,.doc" />
+            <button type="button" style="margin-top: 10px;" class="btn btn-primary" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+              Carica
+            </button>
+          </div>
+</div>

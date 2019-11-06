@@ -12,4 +12,11 @@ export class CoordinateComponentComponent implements OnInit {
   ngOnInit() {
   }
 
+  options:JSON;
+
+  receiveOptions($event) {
+    this.options= $event;
+    console.log(this.options);
+  }
+
 }
