@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { InputComponentComponent } from './input-component/input-component.component';
@@ -25,7 +26,8 @@ import { GraphicComponentComponent } from './graphic-component/graphic-component
     HttpClientModule,
     ToastrModule.forRoot(),
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

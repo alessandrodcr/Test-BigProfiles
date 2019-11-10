@@ -1,3 +1,11 @@
-<div *ngIf="chart">
-    <canvas id="canvas">{{ chart }}</canvas>
+<div class="container border border-dark rounded-lg">
+        <canvas baseChart 
+            [datasets]="lineChartData" 
+            [labels]="lineChartLabels" 
+            [options]="lineChartOptions"
+            [colors]="lineChartColors" 
+            [legend]="lineChartLegend" 
+            [chartType]="lineChartType" 
+            [plugins]="lineChartPlugins">
+        </canvas> 
 </div>

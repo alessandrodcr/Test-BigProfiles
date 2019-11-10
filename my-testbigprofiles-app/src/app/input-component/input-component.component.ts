@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
+import { DataService } from "services/data.service";
+import {ViewDataService} from "services/view-data.service"
  
 const URL = 'http://localhost:8080/api/upload';
 
@@ -11,6 +13,7 @@ const URL = 'http://localhost:8080/api/upload';
   styleUrls: ['./input-component.component.css']
 })
 export class InputComponentComponent implements OnInit {
+
 
   public uploader: FileUploader = new FileUploader({
     url: URL,
@@ -22,7 +25,7 @@ export class InputComponentComponent implements OnInit {
   lFileTxt :  "";
   ljson : {};
 
-  constructor(private toastr: ToastrService) { }
+  constructor(private toastr: ToastrService, private data: DataService, private viewData: ViewDataService) { }
 
   ngOnInit() {
     this.uploader.onAfterAddingFile = (file) => {
@@ -37,6 +40,7 @@ export class InputComponentComponent implements OnInit {
         if(!this.checkObjHelper(this.ljson)){
           this.toastr.error('ATTENZIONE: Gli oggetti nel file non sono tutti uguali!');
         }else{
+          this.data.currentDataSource.subscribe(data => this.ljson = data);
           this.toastr.success('File caricato correttamente!'); 
         }
       } catch (error) {
@@ -47,6 +51,7 @@ export class InputComponentComponent implements OnInit {
     this.reader.onload = (ev: any) => {
       this.lFileTxt = ev.target.result;      
     };
+
   }
 
   checkObjHelper(ljson:any):boolean {
@@ -57,10 +62,10 @@ export class InputComponentComponent implements OnInit {
     return isAllEquals;
   }
 
-  @Output() optionsEvent = new EventEmitter<any>();
-  
-  sendOptions() {
-    this.optionsEvent.emit(this.ljson);
+  newData() {
+    console.log("Into new data");
+    this.data.changeData(JSON.parse(this.lFileTxt));
+    this.viewData.changeViewData(JSON.parse(this.lFileTxt));
   }
 
   

@@ -2,12 +2,13 @@
     <form>
         <div style="text-align: center; font-size: 14px; padding-top: 10px;">Scegli le coordinate</div>
         <label class="form-check-label" for="selectXAxys">Asse X</label>
-        <select class="custom-select mr-sm-2 mar-topbottom" id="selectXAxys">
-            <option (optionsEvent)="receiveOptions($event)"></option>
+        <select class="custom-select mr-sm-2 mar-topbottom" id="selectXAxys" (change)="onChangeEvent($event)">
+            <option value={{dataSource}} *ngFor="let dataSource of dataSource">{{dataSource}}</option>
         </select>
         <label class="form-check-label" for="selectYAxys">Asse Y</label>
-        <select class="custom-select mr-sm-2 mar-topbottom" id="selectYAxys">
+        <select class="custom-select mr-sm-2 mar-topbottom" id="selectYAxys" (change)="onChangeEvent($event)">
+                <option value={{dataSource}} *ngFor="let dataSource of dataSource">{{dataSource}}</option>
         </select>
-        <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Visualizza</button>
+        <button style="margin-top: 10px;" type="submit" (click)="viewDataInGraphic()" class="btn btn-primary">Visualizza</button>
     </form>
 </div>
